@@ -3,9 +3,6 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-<f:metadata>
-  <f:event type="preRenderView" listener="#{usuariosController.loadUsuarios()}"/>
-</f:metadata>
 
 <h:head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,84 +15,16 @@
 </h:head>
 
 <h:body styleClass="centered">
-	
-	<div id="header-table">
-		<h2>Usuarios</h2>
-	</div>	
-
 	<div class="container-table">
 
 		<div id="content">
-		
-			<h:messages globalOnly="true" />						
-
-			<h:form >
-						
-			<h:dataTable value="#{usuariosController.usuarios}" var="tempUser"
-				styleClass="demo-table" 				
-				headerClass="demo-table-header"
-				rowClasses="demo-table-odd-row,demo-table-even-row">
-
-				<h:column>
-					<!-- the column header -->
-					<f:facet name="header">Nombres</f:facet>
-
-					<!--  the value for each row -->
-					#{tempUser.firstName}
-				</h:column>
-
-				<h:column>
-					<!-- the column header -->
-					<f:facet name="header">Apellidos</f:facet>
-
-					<!--  the value for each row -->
-					#{tempUser.lastName}
-				</h:column>
-
-				<h:column>
-					<!-- the column header -->
-					<f:facet name="header">Tipo</f:facet>
-
-					<!--  the value for each row -->
-					#{tempUser.tipo}
-				</h:column>
-				
-				<h:column>
-					<!-- the column header -->
-					<f:facet name="header">User Name</f:facet>
-
-					<!--  the value for each row -->
-					#{tempUser.username}
-				</h:column>
-				
-				<h:column>
-					<!-- the column header -->
-					<f:facet name="header">Password</f:facet>
-
-					<!--  the value for each row -->
-					#{tempUser.password}
-				</h:column>
-
-				<h:column>
-					<!-- the column header -->
-					<f:facet name="header">Acción</f:facet>
-
-					<!--  the value for each row -->
-					<h:commandButton value="Modificar" 
-					styleClass="table-button" 
-					action="#{usuariosController.loadUsuario(tempUser.id)}"/>
-					
-
-					<h:commandButton value="Borrar"
-						onclick="if (!confirm('Seguro?')) return false"
-						styleClass="table-button"
-						action="#{usuariosController.deleteUser(tempUser.id)}"/>
-					
-				</h:column>
-
-			</h:dataTable>
-				<br></br>
-				<h:button value="Anadir Administrador" styleClass="add-student-button" outcome="registrarAdmin"/>
+			<H2>Bienvenido #{login.usr}!</H2>
+			<h:messages globalOnly="true" />
+			
+			<h:form styleClass="form-container">
+				<h:commandButton value="Ver Clientes" styleClass="add-button" action="tablaClientes"/>
+				<h:commandButton value="Añadir Administrador" styleClass="add-button" outcome="registrarAdmin"/>
+				<h:commandButton value="Añadir Rol" styleClass="add-button" action=" "/>
 			</h:form>
 
 		</div>
