@@ -7,22 +7,17 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-	<title>Cafe</title>
+	<title>ROLES</title>
 	
 	<h:outputStylesheet library="css" name="style3.css"  />
 	
 </h:head>
-    
-<h:body styleClass="centered">	
-								
-	<h:form styleClass="b" >
-		<div class="menu">
-			<ul>
-				<h:link class="a" outcome="realizarOrden"><li>ORDENAR</li></h:link>
-				<h:link styleClass="a" outcome="pedidos"><li>ORDENES</li></h:link>				    		
-			</ul>
-		</div>
-	</h:form>
-	
-</h:body>
+	<h:body styleClass="centered">						
+			<h:form styleClass="form-container">
+				<label>Nombre del rol:</label>
+				<h:inputText id="tipo" styleClass="login-text" value="#{rol.tipo}"/>
+				<br/><br/>		
+				<h:commandButton value="Añadir" styleClass="add-student-button" action="#{rolController.addRol(rol)}" />
+		</h:form>
+	</h:body>
 </html>

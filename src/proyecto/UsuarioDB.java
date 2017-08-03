@@ -62,7 +62,7 @@ public class UsuarioDB {
 				int id = myRs.getInt("id");
 				String firstName = myRs.getString("first_name");
 				String lastName = myRs.getString("last_name");
-				String tipo = myRs.getString("tipo");
+				int tipo = myRs.getInt("tipo");
 				String username = myRs.getString("username");
 				String password = myRs.getString("password");
 
@@ -81,7 +81,7 @@ public class UsuarioDB {
 		}
 	}
 
-	public void addUsuario(Usuario comp) throws Exception {
+	public void addUsuario(Usuario us) throws Exception {
 
 		Connection myConn = null;
 		PreparedStatement myStmt = null;
@@ -94,11 +94,11 @@ public class UsuarioDB {
 			myStmt = myConn.prepareStatement(sql);
 
 			// set params
-			myStmt.setString(1, comp.getFirstName());
-			myStmt.setString(2, comp.getLastName());
-			myStmt.setString(3, comp.getUsername());
-			myStmt.setString(4, comp.getPassword());
-			myStmt.setString(5, comp.getTipo());
+			myStmt.setString(1, us.getFirstName());
+			myStmt.setString(2, us.getLastName());
+			myStmt.setString(3, us.getUsername());
+			myStmt.setString(4, us.getPassword());
+			myStmt.setInt(5, us.getTipo());
 			
 			myStmt.execute();			
 		}
@@ -134,8 +134,8 @@ public class UsuarioDB {
 				String firstName = myRs.getString("first_name");
 				String lastName = myRs.getString("last_name");
 				String username = myRs.getString("username");
-				String password = myRs.getString("password");
-				String tipo = myRs.getString("tipo");
+				//String password = myRs.getString("password");
+				int tipo = myRs.getInt("tipo");
 				
 
 				user = new Usuario(id,username,null,firstName, lastName,tipo);
@@ -168,7 +168,7 @@ public class UsuarioDB {
 			// set params
 			myStmt.setString(1, usuario.getFirstName());
 			myStmt.setString(2, usuario.getLastName());
-			myStmt.setString(3, usuario.getTipo());
+			myStmt.setInt(3, usuario.getTipo());
 			myStmt.setString(4, usuario.getUsername());
 			myStmt.setString(5, usuario.getPassword());
 			myStmt.setInt(6, usuario.getId());
