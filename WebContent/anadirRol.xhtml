@@ -10,14 +10,16 @@
 	<title>ROLES</title>
 	
 	<h:outputStylesheet library="css" name="style3.css"  />
-	
+
 </h:head>
 	<h:body styleClass="centered">						
-			<h:form styleClass="form-container">
-				<label>Nombre del rol:</label>
-				<h:inputText id="tipo" styleClass="login-text" value="#{rol.tipo}"/>
-				<br/><br/>		
-				<h:commandButton value="Añadir" styleClass="add-student-button" action="#{rolController.addRol(rol)}" />
+			<h:form>
+				<div class="menu">
+					<label>Nombre del rol:</label>
+					<h:inputText class="text" value="#{rol.tipo}"/>
+					<br/><br/>		
+					<h:commandButton value="Añadir" styleClass="add-button" action="#{rolController.addRol(rol)}" />
+				</div>
 		</h:form>
 	</h:body>
 </html>
