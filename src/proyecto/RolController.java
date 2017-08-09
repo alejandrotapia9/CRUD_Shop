@@ -11,12 +11,12 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 @SessionScoped
 public class RolController {
-	private Rol roldb;
+	private  RolDB roldb;
 	private Logger logger = Logger.getLogger(getClass().getName());
 	
 	
 	public RolController() throws Exception {
-		this.roldb=new Rol();
+		this.roldb= RolDB.getInstance();
 	}
 
 	public String addRol(Rol rol) {

@@ -2,83 +2,83 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
-	
+
+<f:metadata>
+  <f:event type="preRenderView" listener="#{usuariosController.loadUsuarios()}"/>
+</f:metadata>
+
 <h:head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-	<title>ADMINISTRADOR</title>
+	<title>Realizar Orden</title>
 	
-	<h:outputStylesheet library="css" name="style3.css"  />
+	<h:outputStylesheet library="css" name="style2.css"  />
+	
+</h:head>
+
+<h:body styleClass="centered">
+	
+	<div id="header-table">
+		<h2>Cafés</h2>
+	</div>	
+
+	<div class="container-table">
+
+		<div id="content">
 		
-</h:head>    
-<h:body styleClass="centered">	
-	<div class="page">
-	<div id="store_cart">
-		<ul class="cart_head">
-			<li class="cart_head_title">
-				My Cart
-			</li>
-			<li class="cart_head_product">
-				Product
-			</li>
-			<li class="cart_head_options">
-				Edit
-			</li>
-			<li class="cart_head_price">
-				Price
-			</li>
-		</ul>
+			<h:messages globalOnly="true" />						
 
-		<ul class="cart_item">
+			<h:form >
+						
+			<h:dataTable value="#{productosController.productos}" var="tempProducto"
+				styleClass="demo-table" 				
+				headerClass="demo-table-header"
+				rowClasses="demo-table-odd-row,demo-table-even-row">
 
-			<li class="cart_img_col">
-				<img src="https://i.imgur.com/6SFageC.jpg"/>
-			</li>
+				<h:column>
+					<!-- the column header -->
+					<f:facet name="header">Nombre</f:facet>
 
-			<li class="cart_product_col">
-				<p>Off-Road </p>
-				<span><strong>Size: </strong>XL</span>
-			</li>
-			 
-      		<li class="cart_options_col">
-				<span>Quantity: </span>
-        <input type="number" min="1" value="1"/>
-			</li>
+					<!--  the value for each row -->
+					#{tempProducto.Nombre}
+				</h:column>
 
-			<li class="cart_price_col">
-				<h2>$399</h2>
-			</li>
-			<li class="cart_del_col">
-        <img src="https://i.imgur.com/bI4oD5C.png"/>
-			</li>
-		</ul>
+				<h:column>
+					<!-- the column header -->
+					<f:facet name="header">Tipo</f:facet>
 
-		<ul class="cart_item">
+					<!--  the value for each row -->
+					#{tempProducto.tipo}
+				</h:column>
 
-			<li class="cart_img_col">
-				<img src="https://i.imgur.com/3P8WF5D.jpg"/>
-			</li>
+				
+				<h:column>
+					<!-- the column header -->
+					<f:facet name="header">Cantidad</f:facet>
 
-			<li class="cart_product_col">
-				<p>SX Max Pro Lite</p>
-				<span><strong>Size: </strong>Medium</span>
-			</li>
-			 
-      		<li class="cart_options_col">
-				<span>Quantity: </span>
-				<input type="number" min="1" value="1"/>
-			</li>
+					<!--  the value for each row-->
+					#{tempProducto.calcularCantidad()}
+				</h:column>
+				
+				<h:column>
+					<!-- the column header -->
+					<f:facet name="header">Acción</f:facet>
 
-			<li class="cart_price_col">
-				<h2>$399</h2>
-			</li>
-			<li class="cart_del_col">
-        <img src="https://i.imgur.com/bI4oD5C.png"/>
-			</li>
-		</ul>
+					<!--  the value for each row -->
+					<h:selectManyCheckbox 					
+					action="#{usuariosController.loadUsuario(tempUser.id)}"/>
+										
+				</h:column>
+ 
+			</h:dataTable>
+				<br></br>
+				<h:button value="Ordenar" onclick="if (!confirm('Seguro?')) return false" styleClass="add-student-button" outcome=" "/>
+			</h:form>
 
+		</div>
+		
 	</div>
-</div>
+
 </h:body>
 </html>

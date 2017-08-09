@@ -1,8 +1,7 @@
 package proyecto;
-
-
-
 import javax.faces.bean.ManagedBean;
+
+
 @ManagedBean
 public class Usuario {
 
@@ -12,6 +11,7 @@ public class Usuario {
 	private String firstName;
 	private String lastName;
 	private int tipo;
+	
 	
 	public Usuario() {
 	}
