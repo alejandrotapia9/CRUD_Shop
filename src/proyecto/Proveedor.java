@@ -12,11 +12,6 @@ public class Proveedor {
 	private int telefono;
 	private String mail;
 	
-	
-	
-	
-	
-	
 	public Proveedor(int id_proveedor, String nombre, String direccion, int telefono, String mail) throws Exception {
 		super();
 		this.id_proveedor = id_proveedor;

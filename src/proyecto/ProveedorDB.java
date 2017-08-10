@@ -42,7 +42,7 @@ public class ProveedorDB {
 		try {
 			myConn = getConnection();
 
-			String sql = "select * from proveedores order by id";
+			String sql = "select * from proveedores order by id_proveedor";
 
 			myStmt = myConn.createStatement();
 
@@ -109,7 +109,7 @@ public class ProveedorDB {
 		try {
 			myConn = getConnection();
 
-			String sql = "select * from proveedores where id=?";
+			String sql = "select * from proveedores where id_proveedor=?";
 
 			myStmt = myConn.prepareStatement(sql);
 			
@@ -153,7 +153,7 @@ public class ProveedorDB {
 
 			String sql = "update proveedores "
 						+ " set nombre=?, direccion=?, telefono=?, mail=?"
-						+ " where id=?";
+						+ " where id_proveedor=?";
 
 			myStmt = myConn.prepareStatement(sql);
 
@@ -180,7 +180,7 @@ public class ProveedorDB {
 		try {
 			myConn = getConnection();
 
-			String sql = "delete from proveedores where id=?";
+			String sql = "delete from proveedores where id_proveedor=?";
 
 			myStmt = myConn.prepareStatement(sql);
 

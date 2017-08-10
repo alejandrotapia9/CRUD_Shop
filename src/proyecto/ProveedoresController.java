@@ -14,14 +14,14 @@ import javax.faces.context.FacesContext;
 
 @ManagedBean
 @SessionScoped
-public class ProveedorController {
+public class ProveedoresController {
 	private List<Proveedor> proveedores;
 	private ProveedorDB proveedordb;
 	private Logger logger = Logger.getLogger(getClass().getName());
 	
 	
 	
-	public ProveedorController() throws Exception {
+	public ProveedoresController() throws Exception {
 		super();
 		this.proveedores = new ArrayList<>();
 		this.proveedordb = ProveedorDB.getInstance();
