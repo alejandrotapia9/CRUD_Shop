@@ -15,18 +15,38 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class OrdenesController {
 
-	private List<Orden> ordenes;
+	private List<Orden> ordenes;	
 	private OrdenDB ordendb;
 	private Logger logger = Logger.getLogger(getClass().getName());
 
 	public OrdenesController() throws Exception {
-		ordenes = new ArrayList<>();
-		
+		ordenes = new ArrayList<>();		
 		ordendb = OrdenDB.getInstance();
 	}
 
 	public List<Orden> getOrdenes() {
 		return ordenes;
+	}	
+	
+	public void addOrden(Orden orden) throws Exception {
+
+		logger.info("Agregando orden");
+		
+		
+	
+		try {
+			
+			ordendb.addOrden(orden);
+			
+		} catch (Exception exc) {
+			// send this to server logs
+			logger.log(Level.SEVERE, "Error agregando orden", exc);
+			
+			// add error message for JSF page
+			addErrorMessage(exc);
+		}
+		
+		
 	}
 
 	public void loadOrdenes() {
@@ -53,6 +73,23 @@ public class OrdenesController {
 	private void addErrorMessage(Exception exc) {
 		FacesMessage message = new FacesMessage("Error: " + exc.getMessage());
 		FacesContext.getCurrentInstance().addMessage(null, message);
+	}
+
+	public void GenerarOrden(Orden orden) throws Exception {
+		try {
+			String idS= FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("hiddenID");
+			int id = Integer.parseInt(idS);
+			orden.setProducto(id);
+			ordendb.addOrden(orden);
+			
+		} catch (Exception exc) {
+			// send this to server logs
+			logger.log(Level.SEVERE, "Error agregando orden", exc);
+			
+			// add error message for JSF page
+			addErrorMessage(exc);
+		}		
+		
 	}
 
 }

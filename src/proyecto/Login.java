@@ -3,20 +3,29 @@ package proyecto;
 import java.sql.*;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.flow.FlowScoped;
 
 
 @ManagedBean
-@SessionScoped
+@FlowScoped(value="login")
 public class Login {
 	private String usr;
-	private String pwd;	
+	private String pwd;
+	private int id;	
 	
 	
 	public Login() {
 		super();
 		usr = null;
 		pwd = null;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getUsr() {
@@ -49,10 +58,13 @@ public class Login {
 	private String verificarUsuario(ResultSet resultSet) throws SQLException{
 		while(resultSet.next()){
 			if(this.usr.equals(resultSet.getString("username")) && this.pwd.equals(resultSet.getString("password"))){
-				if(resultSet.getString("tipo").equals("administrador"))
+				if(resultSet.getString("tipo").equals("administrador")){
+					this.id = resultSet.getInt("id");
+				
 					return "administrador";
+				}
 				else
-					return "competidor";				
+					return "consumidor";				
 			}else{
 				return "login_error";
 			}	

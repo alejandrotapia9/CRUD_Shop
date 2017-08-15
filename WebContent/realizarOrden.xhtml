@@ -19,9 +19,7 @@
 
 <h:body styleClass="centered">
 	
-	<div id="header">
-		<h2>Cafés</h2>
-	</div>	
+	<f:facet name="header">Cafess</f:facet>
 
 	<div class="container-table">
 
@@ -34,6 +32,7 @@
 			<h:dataTable value="#{productosController.productos}" var="tempProducto"
 				styleClass="demo-table" 				
 				headerClass="demo-table-header"
+				
 				rowClasses="demo-table-odd-row,demo-table-even-row">
 
 				<h:column>
@@ -80,12 +79,16 @@
 					<f:facet name="header">Eleccion</f:facet>
 
 					<!--  the value for each row -->
-					<h:selectBooleanCheckbox value=" " />									
-				</h:column>
- 
+					<h:selectOneRadio value="#{orden.producto}">
+                            <f:selectItem itemValue="#{tempProducto.id_producto}" />
+                    </h:selectOneRadio>  
+                 </h:column>
+ 				
 			</h:dataTable>
 				<br></br>
-				<h:button value="Ordenar" onclick="if (!confirm('Seguro?')) return false" styleClass="add-student-button" outcome=" "/>
+				<input type="hidden" name="hiddenID" value="#{login.id}" />
+				<h:button value="Ordenar" onclick="if (!confirm('Seguro?')) return false" 
+				styleClass="add-student-button" action="#{ordenesController.GenerarOrden(orden)}"/>
 			</h:form>
 
 		</div>

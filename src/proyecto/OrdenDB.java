@@ -51,8 +51,8 @@ public class OrdenDB {
 	
 			// set params
 			
-			myStmt.setInt(2, orden.getProducto().getId_producto());
-			myStmt.setInt(3, orden.getCliente().getId());
+			myStmt.setInt(2, orden.getProducto());
+			myStmt.setInt(3, orden.getUsuario());
 			myStmt.setInt(3, orden.getCantidad());
 			
 			
@@ -91,10 +91,9 @@ public class OrdenDB {
 				int id_usuario = myRs.getInt("id_usuario");
 				int cantidad = myRs.getInt("cantidad");
 				
-				Producto tempProducto = ProductoDB.getInstance().getProducto(id_producto);	
-				Usuario tempUsuario = UsuarioDB.getInstance().getUsuario(id_usuario);
+				
 				// create new user object
-				Orden tempOrden = new Orden(id,fecha,tempProducto,tempUsuario,cantidad);
+				Orden tempOrden = new Orden(id,fecha,id_producto,id_usuario,cantidad);
 				// add it to the list of users
 				ordenes.add(tempOrden);
 			}
