@@ -15,9 +15,9 @@
 		
 		<h:form styleClass="form-container">
 		
-			<label>Username: </label><h:inputText  styleClass="login-text" value="#{loginController.usr}"/>
+			<label>Username: </label><h:inputText  styleClass="login-text" value="#{usuario.username}"/>
 			<br/><br/>
-			<label>Password: </label><h:inputSecret styleClass="login-text" value="#{loginController.pwd}"/>
+			<label>Password: </label><h:inputSecret styleClass="login-text" value="#{usuario.password}"/>
 			<br/><br/>			
 			<h:commandButton value="Login" styleClass="add-student-button" action="#{loginController.autenticar()}"/>
 			<br></br>

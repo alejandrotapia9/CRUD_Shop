@@ -3,46 +3,50 @@ package proyecto;
 import java.sql.*;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.flow.FlowScoped;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 
 
 @ManagedBean
-@FlowScoped(value="login")
+@SessionScoped
 public class Login {
-	private String usr;
-	private String pwd;
-	private int id;	
+	
+	@ManagedProperty(value="#{usuario}") Usuario us;
+	Boolean isLogged = false;
 	
 	
 	public Login() {
-		super();
-		usr = null;
-		pwd = null;
+			
+	}
+		
+	
+	public Usuario getUs() {
+		return us;
+	}
+
+
+	public void setUs(Usuario us) {
+		this.us = us;
 	}
 	
-	public int getId() {
-		return id;
+	private void setUs(ResultSet rs) throws SQLException {
+		this.getUs().setId(rs.getInt("usuarios.id"));
+		this.getUs().setFirstName(rs.getString("usuarios.first_name"));
+		this.getUs().setLastName(rs.getString("usuarios.last_name"));
+		this.getUs().setTipo(rs.getInt("usuarios.tipo"));
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public Boolean getIsLogged() {
+		return isLogged;
 	}
 
-	public String getUsr() {
-		return usr;
+
+	public void setIsLogged(Boolean isLogged) {
+		this.isLogged = isLogged;
 	}
 
-	public void setUsr(String usr) {
-		this.usr = usr;
-	}
 
-	public String getPwd() {
-		return pwd;
-	}
-
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
-	}
+	
 
 	public String autenticar2() throws SQLException{
 				
@@ -57,14 +61,10 @@ public class Login {
 
 	private String verificarUsuario(ResultSet resultSet) throws SQLException{
 		while(resultSet.next()){
-			if(this.usr.equals(resultSet.getString("username")) && this.pwd.equals(resultSet.getString("password"))){
-				if(resultSet.getString("tipo").equals("administrador")){
-					this.id = resultSet.getInt("id");
-				
-					return "administrador";
-				}
-				else
-					return "consumidor";				
+			if(this.us.getUsername().equals(resultSet.getString("username")) && this.us.getPassword().equals(resultSet.getString("password"))){
+				setUs(resultSet);
+				this.isLogged=true;
+				return resultSet.getString("roles.tipo");				
 			}else{
 				return "login_error";
 			}	
@@ -73,7 +73,7 @@ public class Login {
 	}
 
 	private ResultSet getUsuarios(Connection conn) {
-		String Query = "SELECT username,password,roles.tipo from usuarios,roles where username like '"+usr+"'AND usuarios.tipo = roles.id_roles" ;
+		String Query = "SELECT * from usuarios,roles where usuarios.username like '"+us.getUsername()+"'AND usuarios.tipo = roles.id_roles" ;
 		Statement st;
 		try {
 			st = conn.createStatement();
@@ -99,7 +99,7 @@ public class Login {
 		}			
 	}
 	
-	public String autenticar(){
+	/*public String autenticar(){
 		try
 		{
 			Class.forName("com.mysql.jdbc.Driver");
@@ -125,7 +125,7 @@ public class Login {
 		   return "login_error2";
 		}
 		return "login_error2";
-	}
+	}*/
 
 }
 	

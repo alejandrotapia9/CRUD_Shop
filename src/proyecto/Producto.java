@@ -10,20 +10,30 @@ public class Producto {
 	private String tipo;
 	private float precio;
 	private Proveedor id_proveedor;
-		
+	private int cantidadOrden;	
+	
 	public Producto() {
 		super();
 	}
 
-	public Producto(int id_producto, String nombre, String tipo, float precio, Proveedor proveedor) {
+	public Producto(int id_producto, String nombre, String tipo, float precio, Proveedor proveedor, int cantidadOrden) {
 		super();
 		this.id_producto = id_producto;
 		this.nombre = nombre;
 		this.tipo = tipo;
 		this.precio = precio;
 		this.id_proveedor = proveedor;
+		this.cantidadOrden = cantidadOrden;
 	}
 	
+	public int getCantidadOrden() {
+		return cantidadOrden;
+	}
+
+	public void setCantidadOrden(int cantidadOrden) {
+		this.cantidadOrden = cantidadOrden;
+	}
+
 	public int getId_producto() {
 		return id_producto;
 	}

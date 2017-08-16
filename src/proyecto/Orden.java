@@ -6,7 +6,7 @@ import javax.faces.bean.ManagedBean;
 public class Orden {
 	private int id_orden;
 	private String fecha;
-	private int producto;
+	private Producto producto;
 	private int usuario;
 	private int cantidad;
 	
@@ -14,7 +14,7 @@ public class Orden {
 		super();
 	}	
 	
-	public Orden(int id, String fecha, int producto, int usuario,int cantidad) {
+	public Orden(int id, String fecha, Producto producto, int usuario,int cantidad) {
 		super();
 		this.id_orden = id;
 		this.fecha = fecha;
@@ -23,7 +23,7 @@ public class Orden {
 		this.cantidad = cantidad;
 	}
 
-	public Orden(int producto, int usuario,int cantidad) {
+	public Orden(Producto producto, int usuario,int cantidad) {
 		super();
 		this.producto = producto;
 		this.usuario = usuario;	
@@ -54,11 +54,11 @@ public class Orden {
 		this.fecha = fecha;
 	}
 
-	public int getProducto() {
+	public Producto getProducto() {
 		return producto;
 	}
 
-	public void setProducto(int producto) {
+	public void setProducto(Producto producto) {
 		this.producto = producto;
 	}
 

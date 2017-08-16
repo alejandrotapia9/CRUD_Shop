@@ -45,14 +45,14 @@ public class OrdenDB {
 		try {
 			myConn = getConnection();
 	
-			String sql = "insert into ordenes (fecha,producto,cliente,cantidad) values (NOW(), ?, ?,?)";
+			String sql = "insert into ordenes (fecha,id_producto,id_usuario,cantidad) values (NOW(),?,?,?)";
 	
 			myStmt = myConn.prepareStatement(sql);
 	
 			// set params
 			
-			myStmt.setInt(2, orden.getProducto());
-			myStmt.setInt(3, orden.getUsuario());
+			myStmt.setInt(1, orden.getProducto().getId_producto());
+			myStmt.setInt(2, orden.getUsuario());
 			myStmt.setInt(3, orden.getCantidad());
 			
 			
@@ -91,9 +91,9 @@ public class OrdenDB {
 				int id_usuario = myRs.getInt("id_usuario");
 				int cantidad = myRs.getInt("cantidad");
 				
-				
+				Producto pr = ProductoDB.getInstance().getProducto(id_producto);
 				// create new user object
-				Orden tempOrden = new Orden(id,fecha,id_producto,id_usuario,cantidad);
+				Orden tempOrden = new Orden(id,fecha,pr,id_usuario,cantidad);
 				// add it to the list of users
 				ordenes.add(tempOrden);
 			}

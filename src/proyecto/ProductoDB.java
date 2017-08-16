@@ -69,7 +69,7 @@ public class ProductoDB {
 				
 	
 				// create new user object
-				Producto tempProducto = new Producto(id, nombre, tipo, precio, prov);
+				Producto tempProducto = new Producto(id, nombre, tipo, precio, prov,0);
 	
 				// add it to the list of users
 				productos.add(tempProducto);
@@ -116,7 +116,7 @@ public class ProductoDB {
 				
 	
 				// create new user object
-				producto = new Producto(id, nombre, tipo, precio, prov);
+				producto = new Producto(id, nombre, tipo, precio, prov,0);
 			}
 			else {
 				throw new Exception("Could not find Producto id: " + id_producto);
